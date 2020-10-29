@@ -7,6 +7,12 @@ Convert YOLO v4, YOLOv3, YOLO tiny .weights to .pb, .tflite and trt format for t
 Download yolov4.weights file: https://drive.google.com/open?id=1cewMfusmPjYWbrnuJRuKhPMwRe_b9PaT
 
 
+
+## CUSTOM TRAINED MODEL
+For cusotm models fix the `config.py` file with own `obj.names` where there is `coco.names`. Issue fix, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/147#issuecomment-666736983.
+
+
+
 ### Prerequisites
 * Tensorflow 2.3.0rc0
 
