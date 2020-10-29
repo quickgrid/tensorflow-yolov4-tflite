@@ -11,7 +11,7 @@ Download yolov4.weights file: https://drive.google.com/open?id=1cewMfusmPjYWbrnu
 
 ## **UPDATE**
 1. For cusotm models fix the `config.py` file with own `obj.names` where there is `coco.names`. Issue fix, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/147#issuecomment-666736983.
-2. Set `private static boolean isTiny = true;` instead of `false` to make android code work.
+2. Set `private static boolean isTiny = true;` instead of `false` to make android code work for default model with repo.
 3. Commented out `#converter.representative_dataset = representative_data_gen` in `convert_tflite.py` since I don't have coco dataset. Reference, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/214.
 
 
