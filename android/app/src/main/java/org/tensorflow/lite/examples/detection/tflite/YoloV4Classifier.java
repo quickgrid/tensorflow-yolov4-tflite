@@ -178,8 +178,10 @@ public class YoloV4Classifier implements Classifier {
     private static boolean isGPU = true;
 
     // tiny or not
-    private static boolean isTiny = false;
-
+    //private static boolean isTiny = false;
+    private static boolean isTiny = true;
+    
+    
     // config yolov4 tiny
     private static final int[] OUTPUT_WIDTH_TINY = new int[]{2535, 2535};
     private static final int[] OUTPUT_WIDTH_FULL = new int[]{10647, 10647};
