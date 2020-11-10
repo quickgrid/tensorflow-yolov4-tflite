@@ -4,10 +4,10 @@
 3. Commented out `#converter.representative_dataset = representative_data_gen` in `convert_tflite.py` since I don't have coco dataset. Reference, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/214.
 4. For converting yolov4 tiny model to tflite use `--framework tflite` flag in `save_model.py`. Reference, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/234#issuecomment-704097171.
 
-## **Custom Model Deployment**
+### **Custom Model Deployment**
 Train `custom model` with, https://github.com/AlexeyAB/darknet and deploy with android example. Set `isTiny = false` for full yolov4, `TF_OD_API_IS_QUANTIZED = true` for `int8` quantized model and appropriate model path, class name.
 
-## Deploy Yolov4 Tiny to Android
+### Deploy Yolov4 Tiny to Android
 An issue with unsupported ops `EXP`, `SPLIT`, `SPLIT_V` is shown when deploying to android. It is solved by using `implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:0.0.0-nightly'` on android `build.gradle` and below code to convert tensorflow `saved model`. It is unquantized FP32 model.
 
 ```
