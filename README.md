@@ -22,6 +22,25 @@ with tf.io.gfile.GFile(tflite_path, "wb") as fd:
   fd.write(tflite_quant_model)
  ```
 
+### Add Custom Classes From Java Code
+
+Classes can also be read from `*.txt` file by providing path. It can also be added in `YoloV4Classifier.java` by adding lines like below and commenting out code below.
+
+```
+d.labels.add("car");
+d.labels.add("bike");
+
+//        String actualFilename = labelFilename.split("file:///android_asset/")[1];
+//        InputStream labelsInput = assetManager.open(actualFilename);
+//        BufferedReader br = new BufferedReader(new InputStreamReader(labelsInput));
+//        String line;
+//        while ((line = br.readLine()) != null) {
+//            LOGGER.w(line);
+//            d.labels.add(line);
+//        }
+//        br.close();
+```
+
 <hr>
 
 # tensorflow-yolov4-tflite
