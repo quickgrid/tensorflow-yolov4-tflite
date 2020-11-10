@@ -18,6 +18,21 @@ Download yolov4.weights file: https://drive.google.com/open?id=1cewMfusmPjYWbrnu
 ## **Custom Model Deployment**
 Train `custom model` with, https://github.com/AlexeyAB/darknet and deploy with android example. Set `isTiny = false` for full yolov4, `TF_OD_API_IS_QUANTIZED = true` for `int8` quantized model and appropriate model path, class name.
 
+## Deploy Yolov4 Tiny to Android
+An issue with unsupported ops `EXP`, `SPLIT`, `SPLIT_V` is shown when deploying to android. It is solved by using `implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:0.0.0-nightly'` on android `build.gradle` and below code to convert tensorflow `saved model`. It is unquantized FP32 model.
+
+```
+import tensorflow as tf
+converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+converter.target_spec.supported_ops = [tf.lite.OpsSet.SELECT_TF_OPS]
+tflite_quant_model = converter.convert()
+
+tflite_path = '/content/model.tflite'
+with tf.io.gfile.GFile(tflite_path, "wb") as fd:
+  fd.write(tflite_quant_model)
+ ```
+
 <hr>
 
 
