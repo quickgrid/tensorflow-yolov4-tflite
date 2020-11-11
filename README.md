@@ -14,9 +14,9 @@ Tiny weights to saved model,
 
 ```
 ## yolov4-tiny
-!python save_model.py \\
---weights "yolov4-tiny-obj_best.weights" \\
---output "checkpoints/yolov4-tiny-416" \\
+!python save_model.py \
+--weights "yolov4-tiny-obj_best.weights" \
+--output "checkpoints/yolov4-tiny-416" \
 --input_size 320 --model yolov4 --tiny --framework tflite
 ```
 
