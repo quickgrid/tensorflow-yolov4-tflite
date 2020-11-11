@@ -10,6 +10,15 @@ Train `custom model` with, https://github.com/AlexeyAB/darknet and deploy with a
 ### Deploy Yolov4 Tiny to Android
 An issue with unsupported ops `EXP`, `SPLIT`, `SPLIT_V` is shown when deploying to android. It is solved by using `implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:0.0.0-nightly'` on android `build.gradle` and below code to convert tensorflow `saved model`. It is unquantized FP32 model.
 
+Tiny weights to saved model,
+
+```
+## yolov3-tiny
+!python save_model.py --weights "/content/yolov4-tiny-obj_best.weights" --output "/content/checkpoints/yolov4-tiny-416" --input_size 320 --model yolov4 --tiny --framework tflite
+```
+
+Saved model to tflite,
+
 ```
 import tensorflow as tf
 converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
