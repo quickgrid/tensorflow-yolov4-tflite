@@ -13,7 +13,7 @@ An issue with unsupported ops `EXP`, `SPLIT`, `SPLIT_V` is shown when deploying 
 Tiny weights to saved model,
 
 ```
-## yolov3-tiny
+## yolov4-tiny
 !python save_model.py \\
 --weights "yolov4-tiny-obj_best.weights" \\
 --output "checkpoints/yolov4-tiny-416" \\
