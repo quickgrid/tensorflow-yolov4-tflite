@@ -14,12 +14,16 @@ An issue with unsupported ops `EXP`, `SPLIT`, `SPLIT_V` is shown when deploying 
 import tensorflow as tf
 converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
+
 converter.target_spec.supported_ops = [tf.lite.OpsSet.SELECT_TF_OPS]
+#converter.target_spec.supported_types = [tf.float16]
+#converter.target_spec.supported_ops = [tf.lite.OpsSet.EXPERIMENTAL_TFLITE_BUILTINS_ACTIVATIONS_INT16_WEIGHTS_INT8]
+
 tflite_quant_model = converter.convert()
 
 tflite_path = '/content/model.tflite'
-with tf.io.gfile.GFile(tflite_path, "wb") as fd:
-  fd.write(tflite_quant_model)
+with open(tflite_path, 'wb') as f:
+  f.write(tflite_quant_model)
  ```
 
 ### Add Custom Classes From Java Code
