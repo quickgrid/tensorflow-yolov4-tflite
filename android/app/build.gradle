@@ -1,23 +1,24 @@
 apply plugin: 'com.android.application'
-apply plugin: 'de.undercouch.download'
+//apply plugin: 'de.undercouch.download'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion '28.0.3'
+    compileSdkVersion 29
+    buildToolsVersion '30.0.2'
     defaultConfig {
         applicationId "org.tensorflow.lite.examples.detection"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 24
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
 //        ndk {
 //            abiFilters 'armeabi-v7a', 'arm64-v8a'
+//            //abiFilters 'arm64-v8a'
 //        }
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -41,21 +42,36 @@ project.ext.TMP_DIR = project.buildDir.toString() + '/downloads'
 // place them in the "assets" directory and comment out this line.
 //apply from: "download_model.gradle"
 
-apply from: 'download_model.gradle'
+//apply from: 'download_model.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
+
+
 //    implementation 'org.tensorflow:tensorflow-lite:0.0.0-nightly'
 //    implementation 'org.tensorflow:tensorflow-lite-gpu:0.0.0-nightly'
-    implementation 'org.tensorflow:tensorflow-lite:2.2.0'
-    implementation 'org.tensorflow:tensorflow-lite-gpu:2.2.0'
-//    implementation 'org.tensorflow:tensorflow-lite:0.0.0-gpu-experimental'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+
+//    implementation 'org.tensorflow:tensorflow-lite:2.2.0'
+//    implementation 'org.tensorflow:tensorflow-lite-gpu:2.2.0'
+
+//    implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:0.0.0-nightly'
+    implementation 'org.tensorflow:tensorflow-lite-select-tf-ops:2.3.0'
+
+
+    implementation 'org.tensorflow:tensorflow-lite:2.3.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.3.0'
+
+
+    //implementation 'org.tensorflow:tensorflow-lite:0.0.0-gpu-experimental'
+
+
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.code.gson:gson:2.8.6'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
     androidTestImplementation 'com.google.truth:truth:1.0.1'
 }
