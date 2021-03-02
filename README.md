@@ -156,31 +156,6 @@ python save_model.py --weights ./data/yolov4.weights --output ./checkpoints/yolo
 python convert_trt.py --weights ./checkpoints/yolov4.tf --quantize_mode float16 --output ./checkpoints/yolov4-trt-fp16-416
 ```
 
-### Evaluate on COCO 2017 Dataset
-```bash
-# run script in /script/get_coco_dataset_2017.sh to download COCO 2017 Dataset
-# preprocess coco dataset
-cd data
-mkdir dataset
-cd ..
-cd scripts
-python coco_convert.py --input ./coco/annotations/instances_val2017.json --output val2017.pkl
-python coco_annotation.py --coco_path ./coco 
-cd ..
-
-# evaluate yolov4 model
-python evaluate.py --weights ./data/yolov4.weights
-cd mAP/extra
-python remove_space.py
-cd ..
-python main.py --output results_yolov4_tf
-```
-#### mAP50 on COCO 2017 Dataset
-
-| Detection   | 512x512 | 416x416 | 320x320 |
-|-------------|---------|---------|---------|
-| YoloV3      | 55.43   | 52.32   |         |
-| YoloV4      | 61.96   | 57.33   |         |
 
 ### Benchmark
 ```bash
@@ -221,39 +196,11 @@ python benchmarks.py --size 416 --model yolov4 --weights ./data/yolov4.weights
 | YoloV3 FPS  | 20.2    | 24.2    | 31.2    |
 | YoloV4 FPS  | 16.2    | 20.2    | 26.5    |
 
-#### Macbook Pro 15 (2.3GHz i7)
-
-| Detection   | 512x512 | 416x416 | 320x320 |
-|-------------|---------|---------|---------|
-| YoloV3 FPS  |         |         |         |
-| YoloV4 FPS  |         |         |         |
 
 ### Traning your own model
-```bash
-# Prepare your dataset
-# If you want to train from scratch:
-In config.py set FISRT_STAGE_EPOCHS=0 
-# Run script:
-python train.py
 
-# Transfer learning: 
-python train.py --weights ./data/yolov4.weights
-```
 The training performance is not fully reproduced yet, so I recommended to use Alex's [Darknet](https://github.com/AlexeyAB/darknet) to train your own data, then convert the .weights to tensorflow or tflite.
 
-
-
-### TODO
-* [x] Convert YOLOv4 to TensorRT
-* [x] YOLOv4 tflite on android
-* [ ] YOLOv4 tflite on ios
-* [x] Training code
-* [x] Update scale xy
-* [ ] ciou
-* [ ] Mosaic data augmentation
-* [x] Mish activation
-* [x] yolov4 tflite version
-* [x] yolov4 in8 tflite version for mobile
 
 ### References
 
