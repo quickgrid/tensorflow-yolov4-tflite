@@ -57,6 +57,29 @@ d.labels.add("bike");
 //        br.close();
 ```
 
+
+### Issue with given model
+
+The given models detections show on the top left corner for some reason. I remember fixing it, but can no longer find the fix. Yet my custom trained tflite model on 320x320 with FP16 quantization works correctly. Also the provided model with the repo is yolo tiny. 
+
+For custom model deployment `OUTPUT_WIDTH_TINY` or `OUTPUT_WIDTH_FULL` needs to be filled with proper value. The value can be easily found on the error log. Yolov4 full not tested yet.
+
+```
+java.lang.IllegalArgumentException: Cannot copy from a TensorFlowLite tensor (Identity) with shape [1, 1500, 4] to a Java object with shape [1, 2535, 4].
+```
+
+For example, if current width values are `{2535, 2535}` then just change it to `{1500, 1500}`. 
+
+In `YoloV4Classifier.java` change `INPUT_SIZE` to appropriate size. For example if network height width is 320 then input size is 320. Also change `TF_OD_API_INPUT_SIZE` to appropriate resolution value in `MainActivity.java` for single image and `DetectorActivity.java` for realtime processing.
+
+Set `TF_OD_API_IS_QUANTIZED` to true if the custom model is FP16 quantized.
+
+
+### Issue with dynamic graph
+
+This is an error from converted tflite model. I fixed it previously, but no longer working. Probably has to do with `None` in batch size. 
+
+
 <hr>
 
 # tensorflow-yolov4-tflite
