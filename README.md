@@ -78,7 +78,9 @@ Set `TF_OD_API_IS_QUANTIZED` to true if the custom model is FP16 quantized.
 
 ### Issue with dynamic graph
 
-This is an error from converted tflite model. I fixed it previously, but no longer working. Probably has to do with `None` in batch size. 
+This is an error from converted tflite model. I fixed it previously, but no longer working. One probable(need to check) reason is the model was trained in a different resolution say for example 608x608 in training `*.cfg`, but when converting to saved model it was asked to use `416` or `320`. 
+
+
 
 An important note, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/128.
 
