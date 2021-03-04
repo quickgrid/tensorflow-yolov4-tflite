@@ -3,6 +3,7 @@
 2. Set `private static boolean isTiny = true;` instead of `false` to make android code work for default model with repo.
 3. Commented out `#converter.representative_dataset = representative_data_gen` in `convert_tflite.py` since I don't have coco dataset. Reference, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/214.
 4. For converting yolov4 tiny model to tflite use `--framework tflite` flag in `save_model.py`. Reference, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/234#issuecomment-704097171.
+5. For some reason the provided coco model and some custom models detect objects correctly, but bounding box is shown on top left corner. Setting `isGPU = false` in `YoloV4Classifier.java` increases inference time, but allows bounding boxes to be drawn correctly..
 
 ### **Custom Model Deployment**
 Train `custom model` with, https://github.com/AlexeyAB/darknet and deploy with android example. Set `isTiny = false` for full yolov4, `TF_OD_API_IS_QUANTIZED = true` for `int8` quantized model and appropriate model path, class name.
