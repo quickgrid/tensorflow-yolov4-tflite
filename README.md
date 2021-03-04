@@ -1,5 +1,5 @@
 # **UPDATE**
-1. For cusotm models fix the `config.py` file with own `obj.names` where there is `coco.names`. Issue fix, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/147#issuecomment-666736983.
+1. For cusotm models fix the `config.py` file with own `obj.names` where there is `coco.names`. Issue fix, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/147#issuecomment-666736983. In this repo I have replaced `coco.names` with `obj.names`. It should contain custom class names.
 2. Set `private static boolean isTiny = true;` instead of `false` to make android code work for default model with repo.
 3. Commented out `#converter.representative_dataset = representative_data_gen` in `convert_tflite.py` since I don't have coco dataset. Reference, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/214.
 4. For converting yolov4 tiny model to tflite use `--framework tflite` flag in `save_model.py`. Reference, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/234#issuecomment-704097171.
@@ -79,6 +79,7 @@ Set `TF_OD_API_IS_QUANTIZED` to true if the custom model is FP16 quantized.
 
 This is an error from converted tflite model. I fixed it previously, but no longer working. Probably has to do with `None` in batch size. 
 
+An important note, https://github.com/hunglc007/tensorflow-yolov4-tflite/issues/128.
 
 <hr>
 
