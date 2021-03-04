@@ -145,7 +145,9 @@ python convert_tflite.py --weights ./checkpoints/yolov4-416 --output ./checkpoin
 # Run demo tflite model
 python detect.py --weights ./checkpoints/yolov4-416.tflite --size 416 --model yolov4 --image ./data/kite.jpg --framework tflite
 ```
+
 Yolov4 and Yolov4-tiny int8 quantization have some issues. I will try to fix that. You can try Yolov3 and Yolov3-tiny int8 quantization 
+
 ### Convert to TensorRT
 ```bash# yolov3
 python save_model.py --weights ./data/yolov3.weights --output ./checkpoints/yolov3.tf --input_size 416 --model yolov3
@@ -193,17 +195,10 @@ python benchmarks.py --size 416 --model yolov4 --weights ./data/yolov4.weights
 | YoloV3 FPS  | 27.6    | 32.3    | 45.1    |
 | YoloV4 FPS  | 24.0    | 30.3    | 40.1    |
 
-#### Tesla P4
-
-| Detection   | 512x512 | 416x416 | 320x320 |
-|-------------|---------|---------|---------|
-| YoloV3 FPS  | 20.2    | 24.2    | 31.2    |
-| YoloV4 FPS  | 16.2    | 20.2    | 26.5    |
-
 
 ### Traning your own model
 
-The training performance is not fully reproduced yet, so I recommended to use Alex's [Darknet](https://github.com/AlexeyAB/darknet) to train your own data, then convert the .weights to tensorflow or tflite.
+Training can be done with [Darknet](https://github.com/AlexeyAB/darknet) using custom dataset. Both yolov4 full and tiny version is supported. Process for going from darknet weights to android is, darknet weight -> saved model -> tflite/quantied tflite.
 
 
 ### References
@@ -211,7 +206,7 @@ The training performance is not fully reproduced yet, so I recommended to use Al
   * YOLOv4: Optimal Speed and Accuracy of Object Detection [YOLOv4](https://arxiv.org/abs/2004.10934).
   * [darknet](https://github.com/AlexeyAB/darknet)
   
-   My project is inspired by these previous fantastic YOLOv3 implementations:
+   This project is inspired by these previous fantastic YOLOv3 implementations:
   * [Yolov3 tensorflow](https://github.com/YunYang1994/tensorflow-yolov3)
   * [Yolov3 tf2](https://github.com/zzh8829/yolov3-tf2)
 
